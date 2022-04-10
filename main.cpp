@@ -10,10 +10,14 @@ void train_station(char name)
     std::cout << "Train " << name << " has arrived on the station." << std::endl;
     while (command != "depart")
     {
+        cout_mtx.lock();
         std::cout << "Input command for train " << name << ": " << std::endl;
         std::cin >> command;
+        cout_mtx.unlock();
     }
+    cout_mtx.lock();
     std::cout << "Train " << name << " is departing." << std::endl;
+    cout_mtx.unlock();
 }
 std::mutex train_station_access;
 
